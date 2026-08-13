@@ -119,9 +119,8 @@ const player = {
     isJumping: false,
     jumpForce: -12,
     
-    draw() {
-        ctx.fillStyle = "#00ffcc";
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+  draw() {
+        ctx.drawImage(playerImg, this.x, this.y, this.width, this.height);
     },
     
     update() {
