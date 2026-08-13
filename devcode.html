@@ -223,14 +223,12 @@ function gameLoop() {
 
     for (let i = obstacles.length - 1; i >= 0; i--) {
         let obs = obstacles[i];
-        obs.x -= obs.speed; // Move obstacle left
-        
-        // Draw Obstacle
-        draw() {
+        obs.x -= obs.speed; 
+	}
+	draw() {
         ctx.drawImage(obstacleImg, this.x, this.y, this.width, this.height);
     },
-
-        // AABB Collision Detection
+		
         if (
             player.x < obs.x + obs.width &&
             player.x + player.width > obs.x &&
