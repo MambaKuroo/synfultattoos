@@ -226,7 +226,7 @@ function gameLoop() {
         obs.x -= obs.speed; 
 	}
 	draw() {
-        ctx.drawImage(obstacleImg, this.x, this.y, this.width, this.height);
+        ctx.drawImage(obstacleImg, obs.x, obs.y, obs.width, obs.height);
     },
 		
         if (
