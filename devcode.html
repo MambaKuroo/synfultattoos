@@ -169,7 +169,105 @@
   }
 }
 </style>
+		 <style>
+			 canvas {
+				 background: #f7f7f7;
+				 display: block;
+				 margin: 0 auto;
+				 border: 2px solid #333;
+			 }
+			 const canvas = document.getElementByld("gameCanvas");
+			 const cx = canvas.getContext("2d")
 
+			 letplayerlmg = new image();
+			 playerlmg.src = "player.png";
+			 let obstaclelmg = new image ();
+			 obstaclelmg.src = "obstacle.png";
+
+			 let player = { x: 50, y: 240, width: 40, height: 40, vy: 0, gravity: 0.6, jump: -10, grounded: false};
+			 let obstacle = { x: 800, y: 235, width: 45, height: 45, speed: 5};
+			 let score = 0;
+			 let isGameOver = false;
+
+			 document.addEventListener("keydown", function(e)
+			 {
+				 if(e.code === "Space" && player.grounded) {
+					 player.vy = player.jump;
+					 player.grounded = false;
+				 }
+				 if(e.code === "Space" && isGameOver) {
+					 resetGame();
+				 }
+			 });
+			 function resetGame() {
+				 obstacle.x = 800;
+				 player.y = 240;
+				 player.vy = 0;
+				 score = 0;
+				 isGameOver = false;
+				 loop();
+			 }
+			 function update() {
+				 if (isGameOver) return;
+
+				 player.vy += player.gravity;
+				 player.y += player.vy;
+
+				 if(player.y > 240) {
+					 player.y = 240;
+					 player.vy = 0;
+					 player.grounded = true;
+				 }
+				 obstacle.x -= obstacle.speed;
+				 if(obstacle.x < -45) {
+					 obstacle.x = 800;
+					 score++
+					 }
+				if(player.x < obstacle.x + obstacle.width &&
+					 player.x + player.width > obstacle.x &&
+					 player.y < obstacle.y + obstacle.height &&
+					 player.y + player.height > obstacle.y){
+						 isGameOver = true;
+					 }
+				 }
+			function draw() {
+				ctx.clearRect (0, 0, canvas.width, canvas.height);
+
+				ctx.fillStyle = "#333";
+				ctx.fillRect (0, 280, canvas.width, 4);
+
+				if(playerlmg.complete) {
+					ctx.drawImage(playerlmg, player.x, player.y, player.width, player.height);
+				} else {
+					ctx.fillStyle = "#ff5722";
+					ctx.fillRect (player.x, player.y, player.width, player.height);
+				}
+				if(obstaclelmg.complete) {
+					ctx.drawLmage (obstaclelmg, obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+				} else {
+					ctx.fillStyle = "#4caf50";
+					ctx.fillRect (obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+				}
+				ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+				ctx.fillRect (0, 0, canvas.width, canvas.height);
+				ctx.fillStyle = "#fff";
+				ctx.font = "24px Arial";
+				ctx.fillText ("Game Over! Press Space to Restart.", 210, 200);
+				}
+			 }
+			 function loop (){
+				 update();
+				 draw();
+				 if (!isGameOver) {
+					 requestAnimationFrame(loop);
+				 }
+			 }
+			 loop();
+				
+			 </style>
+<container>
+	<canvas id="gameCanvas" widtch="800" height="400"></canvas>
+</container>
 <!-- Container element -->
 <div class="parallaxx"></div>
      </section>
