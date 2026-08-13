@@ -87,180 +87,339 @@
                          <div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Simon Side-Scroller</title>
+
     <style>
+
         body {
-            margin: 0;
-            background: #222; /* Dark background so white border stands out */
+
+margin: 0;
+
+            background: rgb(255, 255, 255;)
+
             display: flex;
+
             justify-content: center;
+
             align-items: center;
+
             height: 100vh;
+
             overflow: hidden;
-            font-family: sans-serif;
+
         }
 
-        #gameCanvas {
+        canvas {
+
             background: rgb(212, 104, 104);
+
             border: 4px solid #fff;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+
         }
+
     </style>
+
+
 
 <canvas id="gameCanvas" width="800" height="400"></canvas>
 
+
+
 <script>
+
 const canvas = document.getElementById("gameCanvas");
+
 const ctx = canvas.getContext("2d");
 
-// Load Images
+
+
 let playerImg = new Image();
+
 playerImg.src = "simon.png";
 
 let obstacleImg = new Image();
+
 obstacleImg.src = "ellie.png";
-    
+
+
 // Game Constants
+
 const GRAVITY = 0.6;
+
 const GROUND_Y = canvas.height - 50;
 
+
+
 // Player Object
+
 const player = {
+
     x: 100,
+
     y: GROUND_Y - 40,
+
     width: 40,
+
     height: 40,
+
     velocityY: 0,
+
     isJumping: false,
+
     jumpForce: -12,
+
     
-    draw() {
+
+  draw() {
+
         ctx.drawImage(playerImg, this.x, this.y, this.width, this.height);
+
     },
+
     
+
     update() {
+
         // Apply Gravity
+
         this.velocityY += GRAVITY;
+
         this.y += this.velocityY;
+
         
+
         // Floor Collision
+
         if (this.y + this.height >= GROUND_Y) {
+
             this.y = GROUND_Y - this.height;
+
             this.velocityY = 0;
+
             this.isJumping = false;
+
         }
+
     },
+
     
+
     jump() {
+
         if (!this.isJumping) {
+
             this.velocityY = this.jumpForce;
+
             this.isJumping = true;
+
         }
+
     }
+
 };
 
+
+
 // Obstacle Array
+
 const obstacles = [];
+
 let spawnTimer = 0;
+
 let score = 0;
+
 let gameOver = false;
 
+
+
 function spawnObstacle() {
+
     const height = Math.random() * 40 + 20; // 20px to 60px
+
     obstacles.push({
+
         x: canvas.width,
+
         y: GROUND_Y - height,
+
         width: 25,
+
         height: height,
+
         speed: 6
+
     });
+
 }
+
+
 
 // Handle Inputs
+
 window.addEventListener("keydown", (e) => {
+
     if (e.code === "Space" || e.code === "ArrowUp" || e.code === "KeyW") {
+
         if (gameOver) {
+
             resetGame();
+
         } else {
+
             player.jump();
+
         }
+
     }
+
 });
 
+
+
 function resetGame() {
+
     obstacles.length = 0;
+
     score = 0;
+
     player.y = GROUND_Y - player.height;
+
     player.velocityY = 0;
+
     player.isJumping = false;
+
     gameOver = false;
+
     gameLoop();
+
 }
 
+
+
 // Main Game Loop
+
 function gameLoop() {
+
     if (gameOver) {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+
+        ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+
         ctx.fillStyle = "#fff";
+
         ctx.font = "30px sans-serif";
-        ctx.textAlign = "center";
-        ctx.fillText("Game Over! Press Space to Restart", canvas.width / 2, canvas.height / 2);
+
+        ctx.fillText("Game Over! Press Space to Restart", canvas.width / 2 - 220, canvas.height / 2);
+
         return;
+
     }
+
+
 
     requestAnimationFrame(gameLoop);
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+
+
     // Draw Ground
+
     ctx.fillStyle = "#555";
+
     ctx.fillRect(0, GROUND_Y, canvas.width, canvas.height - GROUND_Y);
 
+
+
     // Update & Draw Player
+
     player.update();
+
     player.draw();
 
+
+
     // Manage Obstacles
+
     spawnTimer++;
+
     if (spawnTimer > 90) { // Spawn every ~1.5 seconds
+
         spawnObstacle();
+
         spawnTimer = 0;
+
     }
 
-    for (let i = obstacles.length - 1; i >= 0; i--) {
+
+
+   for (let i = obstacles.length - 1; i >= 0; i--) {
+
         let obs = obstacles[i];
+
         obs.x -= obs.speed; // Move obstacle left
+
         
-        // Draw Obstacle
+
+        // Draw Obstacle correctly using obs properties
+
         ctx.drawImage(obstacleImg, obs.x, obs.y, obs.width, obs.height);
 
+
+
         // AABB Collision Detection
+
         if (
+
             player.x < obs.x + obs.width &&
+
             player.x + player.width > obs.x &&
+
             player.y < obs.y + obs.height &&
+
             player.y + player.height > obs.y
+
         ) {
+
             gameOver = true;
+
         }
 
+
+
         // Remove off-screen obstacles and increase score
+
         if (obs.x + obs.width < 0) {
+
             obstacles.splice(i, 1);
+
             score++;
+
         }
+
     }
 
     // Draw Score
+
     ctx.fillStyle = "#fff";
-    ctx.font = "bold 20px sans-serif";
-    ctx.textAlign = "left";
+
+    ctx.font = "20px sans-serif";
+
     ctx.fillText(`Score: ${score}`, 20, 40);
+
 }
 
+
+
 // Start Game
+
 gameLoop();
-</script>
+
+</script> 
+
+
 						 </div>
                     </div>
                </div>
