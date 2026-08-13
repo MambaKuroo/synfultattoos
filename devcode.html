@@ -112,6 +112,9 @@ const ctx = canvas.getContext("2d");
 
 	let playerImg = new Image();
 	playerImg.src = "simon.png";
+	let obstacleImg = new Image();
+	obstacleImg.src = "ellie.png";
+	
 // Game Constants
 const GRAVITY = 0.6;
 const GROUND_Y = canvas.height - 50;
@@ -223,8 +226,9 @@ function gameLoop() {
         obs.x -= obs.speed; // Move obstacle left
         
         // Draw Obstacle
-        ctx.fillStyle = "rgb(94, 8, 8)";
-        ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+        draw() {
+        ctx.drawImage(obstacleImg, this.x, this.y, this.width, this.height);
+    },
 
         // AABB Collision Detection
         if (
