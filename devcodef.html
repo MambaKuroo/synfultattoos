@@ -114,163 +114,88 @@
   max-width: 300px;    /* Prevents images from getting too large */
   height: auto;        /* Maintains aspect ratio */
 }
-								  </style>
+ </style>
 
-     <!-- ABOUT -->
-     <div>
-		 <section id="home" data-stellar-background-ratio="0.5">
-          <div class="container">
-               <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                         <div>
+	<div>
+	 <section id="home" data-stellar-background-ratio="0.5">
+      <div class="container">
+		  <div class="row">
+              <div class="col-md-6 col-sm-12">
+				  <div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Simon Side-Scroller</title>
-
     <style>
-
-        body {
-
-margin: 0;
-
+        .canvas-container {
+			margin: 0;
             background: rgb(255, 255, 255;)
-
             display: flex;
-
             justify-content: center;
-
             align-items: center;
-
             height: 100vh;
-
             overflow: hidden;
-
         }
-
         canvas {
-
             background: rgb(212, 104, 104);
-
             border: 4px solid #fff;
-
         }
-
     </style>
 
-
-
+<div class="canvas-container">
 <canvas id="gameCanvas" width="800" height="400"></canvas>
-
+</div>
 
 
 <script>
-
 const canvas = document.getElementById("gameCanvas");
-
 const ctx = canvas.getContext("2d");
 
 
-
 let playerImg = new Image();
-
 playerImg.src = "simon.png";
-
 let obstacleImg = new Image();
-
 obstacleImg.src = "ellie.png";
 
-
-// Game Constants
-
 const GRAVITY = 0.6;
-
 const GROUND_Y = canvas.height - 50;
 
-
-
-// Player Object
-
 const player = {
-
     x: 100,
-
     y: GROUND_Y - 40,
-
     width: 40,
-
     height: 40,
-
     velocityY: 0,
-
     isJumping: false,
-
     jumpForce: -12,
 
-    
-
   draw() {
-
         ctx.drawImage(playerImg, this.x, this.y, this.width, this.height);
-
     },
-
     
-
     update() {
-
-        // Apply Gravity
-
         this.velocityY += GRAVITY;
-
         this.y += this.velocityY;
 
-        
-
-        // Floor Collision
-
         if (this.y + this.height >= GROUND_Y) {
-
             this.y = GROUND_Y - this.height;
-
             this.velocityY = 0;
-
             this.isJumping = false;
-
         }
-
     },
 
-    
-
     jump() {
-
         if (!this.isJumping) {
-
             this.velocityY = this.jumpForce;
         }
-
     }
 
-    // Draw Score
-
     ctx.fillStyle = "#fff";
-
     ctx.font = "20px sans-serif";
-
     ctx.fillText(`Score: ${score}`, 20, 40);
-
 }
 
-
-
-// Start Game
-
 gameLoop();
-
 </script> 
-
-
 						 </div>
                     </div>
                </div>
