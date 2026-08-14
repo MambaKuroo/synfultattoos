@@ -1,251 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<head>
-		<link rel="stylesheet" type="text/css" href="style.css">
-	</head>
-	<body>
-		<div class="circle"></div>
-	</body>
-
-     <title>Sydney Luck</title>
-     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-     <meta name="description" content="">
-     <meta name="keywords" content="">
-     <meta name="author" content="">
-     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-     <link rel="stylesheet" href="css/bootstrap.min.css">
-     <link rel="stylesheet" href="css/animate.css">
-     <link rel="stylesheet" href="css/owl.carousel.css">
-     <link rel="stylesheet" href="css/font-awesome.min.css">
-     <link rel="stylesheet" href="css/owl.theme.default.min.css">
-     <link rel="stylesheet" href="css/magnific-popup.css">
-
-     <!-- MAIN CSS -->
-     <link rel="stylesheet" href="css/templatemo-style.css">
-     <style>
-          body  {
-   background-image: linear-gradient(to right,rgb(255, 255, 255),rgb(188, 218, 230));
- }
-      </style>
-</head>
-<body>
-
-     <!-- PRE LOADER -->
-     <section class="preloader">
-          <div class="spinner">
-
-               <span class="spinner-rotate"></span>
-               
-          </div>
-     </section>
-
-
-     <!-- MENU -->
-     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-          <div class="container">
-
-               <div class="navbar-header">
-                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                         <span class="icon icon-bar"></span>
-                         <span class="icon icon-bar"></span>
-                         <span class="icon icon-bar"></span>
-                    </button>
-
-                    <!-- lOGO TEXT HERE -->
-                    <a href="index.html" class="navbar-brand"><img src="SLUCKSMALL.png" style="margin-top: -15px;" class="img-responsive"> <span></span> </a>
-               </div>
-
-               <!-- MENU LINKS -->
-               <div class="collapse navbar-collapse" >
-                    <ul class="nav navbar-nav navbar-nav-first" >
-                          <li><a href="index.html" style="color: black;">ABOUT ME</a></li>
-                         <li><a href="acting.html" style="color: black;">VOICE ACTING</a></li>
-						 <li><a href="artist.html" style="color: black;">ARTWORK</a></li>
-                         <li><a href="devcode.html" style="color: black;">CODING</a></li>
-                         <li><a href="#contact" class="smoothScroll" style="color: black;">CONTACT</a></li>
-                    </ul>
-                    </ul>
-               </div>
-
-          </div>
-     </section>
-
-
-     <!-- HOME -->
-     <section >
-	<style>
-.parallax {
-  /* The image used */
-  background-image: url("master3cut2.jpg");
-
-  /* Set a specific height */
-  min-height: 800px;
-  width: auto;
-  
-
-  /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-		@media only screen and (max-device-width: 500px) {
-  .parallax {
-    background-attachment: scroll;
-	 background-image: url("MASTER6.jpg");
-  }
-}
-</style>
-
-<!-- Container element -->
-<div class="parallax"></div>
-     </section>
-<style>
-									  .image-row {
-  display: flex;       /* Forces items into a horizontal row */
-  gap: 10px;           /* Adds space between the images */
-}
-
-.image-row img {
-  width: 100%;         /* Allows images to resize responsively */
-  max-width: 300px;    /* Prevents images from getting too large */
-  height: auto;        /* Maintains aspect ratio */
-}
- </style>
-
-	<div>
-	 <section id="home" data-stellar-background-ratio="0.5">
-      <div class="container">
-		  <div class="row">
-              <div class="col-md-6 col-sm-12">
-				  <div>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simon Side-Scroller</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>Sydney Luck</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/templatemo-style.css">
+
     <style>
+        body {
+            background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(188, 218, 230));
+        }
+
+        .parallax {
+            background-image: url("master3cut2.jpg");
+            min-height: 800px;
+            width: auto;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        @media only screen and (max-device-width: 500px) {
+            .parallax {
+                background-attachment: scroll;
+                background-image: url("MASTER6.jpg");
+            }
+        }
+
+        .image-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .image-row img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+
+        /* Canvas Container Adjustments for Page Scroll */
         .canvas-container {
-			margin: 0;
-            background: rgb(255, 255, 255;)
+            margin: 20px 0;
+            background: transparent;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            width: 100%;
         }
+
         canvas {
             background: rgb(212, 104, 104);
             border: 4px solid #fff;
+            max-width: 100%;
+            height: auto;
         }
     </style>
+</head>
+<body>
 
-<div class="canvas-container">
-<canvas id="gameCanvas" width="800" height="400"></canvas>
-</div>
+    <!-- PRE LOADER -->
+    <section class="preloader">
+        <div class="spinner">
+            <span class="spinner-rotate"></span>
+        </div>
+    </section>
 
+    <!-- MENU -->
+    <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand">
+                    <img src="SLUCKSMALL.png" style="margin-top: -15px;" class="img-responsive" alt="Logo">
+                </a>
+            </div>
 
-<script>
-const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-nav-first">
+                    <li><a href="index.html" style="color: black;">ABOUT ME</a></li>
+                    <li><a href="acting.html" style="color: black;">VOICE ACTING</a></li>
+                    <li><a href="artist.html" style="color: black;">ARTWORK</a></li>
+                    <li><a href="devcode.html" style="color: black;">CODING</a></li>
+                    <li><a href="#contact" class="smoothScroll" style="color: black;">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
+    <!-- HOME PARALLAX -->
+    <section>
+        <div class="parallax"></div>
+    </section>
 
-let playerImg = new Image();
-playerImg.src = "simon.png";
-let obstacleImg = new Image();
-obstacleImg.src = "ellie.png";
+    <!-- GAME SECTION -->
+    <div>
+        <section id="home" data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="canvas-container">
+                            <canvas id="gameCanvas" width="800" height="400"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
-const GRAVITY = 0.6;
-const GROUND_Y = canvas.height - 50;
+    <br><br><br>
 
-const player = {
-    x: 100,
-    y: GROUND_Y - 40,
-    width: 40,
-    height: 40,
-    velocityY: 0,
-    isJumping: false,
-    jumpForce: -12,
+    <!-- FOOTER -->
+    <footer id="contact" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-8">
+                    <div class="footer-info">
+                        <div class="section-title">
+                            <h2 style="color: black" class="wow fadeInUp" data-wow-delay="0.2s">Contact</h2>
+                        </div>
+                        <address class="wow fadeInUp" data-wow-delay="0.4s">
+                            <p><a href="https://resumes.actorsaccess.com/2902879-7776460" style="color: black">Actors Access</a></p>
+                            <p><a href="https://www.backstage.com/u/sydney-defelix/" style="color: black">Backstage</a></p>
+                            <p><a href="https://pro.imdb.com/name/nm18751816/?ref_=hm_nv_usr_profile" style="color: black">IMDB</a></p>
+                            <p><a href="https://www.instagram.com/ssydluck?igsh=MWdudnNydTJteWlqaQ%3D%3D&utm_source=qr" style="color: black">Instagram</a></p>
+                            <p><a href="mailto:s.luckacting@gmail.com" style="color: black">s.luckacting@gmail.com</a></p>
+                        </address>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-8">
+                    <div class="footer-info">
+                        <div class="section-title">
+                            <h2 style="color: black" class="wow fadeInUp" data-wow-delay="0.2s">Website</h2>
+                        </div>
+                        <address class="wow fadeInUp" data-wow-delay="0.4s">
+                            <p style="color: black">Created by <b>Sydney Luck</b> 2026.</p>
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-  draw() {
-        ctx.drawImage(playerImg, this.x, this.y, this.width, this.height);
-    },
-    
-    update() {
-        this.velocityY += GRAVITY;
-        this.y += this.velocityY;
+    <!-- SCRIPTS -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/smoothscroll.js"></script>
+    <script src="js/custom.js"></script>
 
-        if (this.y + this.height >= GROUND_Y) {
-            this.y = GROUND_Y - this.height;
-            this.velocityY = 0;
-            this.isJumping = false;
+    <!-- GAME ENGINE SCRIPT -->
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let playerImg = new Image();
+        playerImg.src = "simon.png";
+        let obstacleImg = new Image();
+        obstacleImg.src = "ellie.png";
+
+        const GRAVITY = 0.6;
+        const GROUND_Y = canvas.height - 50;
+        let score = 0;
+
+        const player = {
+            x: 100,
+            y: GROUND_Y - 40,
+            width: 40,
+            height: 40,
+            velocityY: 0,
+            isJumping: false,
+            jumpForce: -12,
+
+            draw() {
+                ctx.drawImage(playerImg, this.x, this.y, this.width, this.height);
+            },
+
+            update() {
+                this.velocityY += GRAVITY;
+                this.y += this.velocityY;
+
+                if (this.y + this.height >= GROUND_Y) {
+                    this.y = GROUND_Y - this.height;
+                    this.velocityY = 0;
+                    this.isJumping = false;
+                }
+            },
+
+            jump() {
+                if (!this.isJumping) {
+                    this.velocityY = this.jumpForce;
+                    this.isJumping = true;
+                }
+            }
+        };
+
+        // Keyboard Controls
+        window.addEventListener("keydown", (e) => {
+            if (e.code === "Space" || e.code === "ArrowUp") {
+                // Prevents Spacebar from scrolling down the web page
+                e.preventDefault();
+                player.jump();
+            }
+        });
+
+        function gameLoop() {
+            // Clear Screen
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Ground Line
+            ctx.strokeStyle = "#fff";
+            ctx.beginPath();
+            ctx.moveTo(0, GROUND_Y);
+            ctx.lineTo(canvas.width, GROUND_Y);
+            ctx.stroke();
+
+            // Update & Draw Player
+            player.update();
+            player.draw();
+
+            // Render HUD / Score
+            ctx.fillStyle = "#fff";
+            ctx.font = "20px sans-serif";
+            ctx.fillText(`Score: ${score}`, 20, 40);
+
+            requestAnimationFrame(gameLoop);
         }
-    },
 
-    jump() {
-        if (!this.isJumping) {
-            this.velocityY = this.jumpForce;
-        }
-    }
-
-    ctx.fillStyle = "#fff";
-    ctx.font = "20px sans-serif";
-    ctx.fillText(`Score: ${score}`, 20, 40);
-}
-
-gameLoop();
-</script> 
-						 </div>
-                    </div>
-               </div>
-          </div>
-     </section>
- </div>
-		<br>
-		<br>
-		<br>
-     <footer id="contact" data-stellar-background-ratio="0.5">
-          <div class="container">
-               <div class="row">
-					<div class="col-md-3 col-sm-8">
-                         <div class="footer-info">
-                              <div class="section-title">
-                                   <h2 style="color: black" class="wow fadeInUp" data-wow-delay="0.2s">Contact</h2>
-                              </div>
-                              <address class="wow fadeInUp" data-wow-delay="0.4s">
-                                  <p ><a href="https://resumes.actorsaccess.com/2902879-7776460" style="color: black">Actors Access</a></p>
-								  <p ><a href="https://www.backstage.com/u/sydney-defelix/" style="color: black">Backstage</a></p>
-								  <p ><a href="https://pro.imdb.com/name/nm18751816/?ref_=hm_nv_usr_profile" style="color: black">IMDB</a></p>
-								  <p ><a href="https://www.instagram.com/ssydluck?igsh=MWdudnNydTJteWlqaQ%3D%3D&utm_source=qr" style="color: black">Instagram</a></p>
-								  <p ><a href="mailto:s.luckacting@gmail.com" style="color: black">s.luckacting@gmail.com</a></p>
-                              </address>
-                         </div> 
-                    </div>
-				    <div class="col-md-3 col-sm-8">
-                         <div class="footer-info">
-                              <div class="section-title">
-                                   <h2 style="color: black" class="wow fadeInUp" data-wow-delay="0.2s">Website</h2>
-                              </div>
-                              <address class="wow fadeInUp" data-wow-delay="0.4s">
-                                   <p style="color: black">Created by <b>Sydney Luck</b> 2026</b>.</p>
-                              </address>
-                         </div>
-                    </div>
-               </div>
-          </div>
-     </footer>
-
-     <!-- SCRIPTS -->
-     <script src="js/jquery.js"></script>
-     <script src="js/bootstrap.min.js"></script>
-     <script src="js/jquery.stellar.min.js"></script>
-     <script src="js/wow.min.js"></script>
-     <script src="js/owl.carousel.min.js"></script>
-     <script src="js/jquery.magnific-popup.min.js"></script>
-     <script src="js/smoothscroll.js"></script>
-     <script src="js/custom.js"></script>
-
+        // Start Loop
+        gameLoop();
+    </script>
 </body>
 </html>
 
