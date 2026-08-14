@@ -195,6 +195,21 @@
             draw() {
                 ctx.drawImage(playerImg, this.x, this.y, this.width, this.height);
             },
+            const obstacles = [];
+            let spawnTimer = 0;
+            let score = 0;
+            let gameOver = false;
+
+            function spawnObstacle() {
+            const height = Math.random() * 40 + 20; // 20px to 60px
+                obstacles.push({
+                    x: canvas.width,
+                    y: GROUND_Y - height,
+                    width: 25,
+                    height: height,
+                    speed: 6
+    });
+}
 
             update() {
                 this.velocityY += GRAVITY;
@@ -215,22 +230,6 @@
             }
         };
         
-const obstacles = [];
-let spawnTimer = 0;
-let score = 0;
-let gameOver = false;
-
-function spawnObstacle() {
-    const height = Math.random() * 40 + 20; // 20px to 60px
-    obstacles.push({
-        x: canvas.width,
-        y: GROUND_Y - height,
-        width: 25,
-        height: height,
-        speed: 6
-    });
-}
-
 // Handle Inputs
 window.addEventListener("keydown", (e) => {
     if (e.code === "Space" || e.code === "ArrowUp" || e.code === "KeyW") {
