@@ -170,112 +170,179 @@
     <script src="js/custom.js"></script>
 
     <!-- GAME ENGINE SCRIPT -->
-    <script>
-        const canvas = document.getElementById("gameCanvas");
-        const ctx = canvas.getContext("2d");
+   <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
 
-        let playerImg = new Image();
-        playerImg.src = "simon.png";
-        let obstacleImg = new Image();
-        obstacleImg.src = "ellie.png";
+    // Optional: Set canvas dimensions dynamically if not set in HTML
+    canvas.width = canvas.width || 800;
+    canvas.height = canvas.height || 400;
 
-        const GRAVITY = 0.6;
-        const GROUND_Y = canvas.height - 50;
-        let score = 0;
+    let playerImg = new Image();
+    playerImg.src = "simon.png";
+    let obstacleImg = new Image();
+    obstacleImg.src = "ellie.png";
 
-        const player = {
-            x: 100,
-            y: GROUND_Y - 40,
-            width: 40,
-            height: 40,
-            velocityY: 0,
-            isJumping: false,
-            jumpForce: -12,
+    const GRAVITY = 0.6;
+    const GROUND_Y = canvas.height - 50;
+    
+    let score = 0;
+    let spawnTimer = 0;
+    let gameOver = false;
+    const obstacles = [];
 
-            draw() {
+    const player = {
+        x: 100,
+        y: GROUND_Y - 40,
+        width: 40,
+        height: 40,
+        velocityY: 0,
+        isJumping: false,
+        jumpForce: -12,
+
+        draw() {
+            // Draws image if loaded, falls back to a colored rectangle if image is missing
+            if (playerImg.complete && playerImg.naturalWidth !== 0) {
                 ctx.drawImage(playerImg, this.x, this.y, this.width, this.height);
-            },}
-        
-            const obstacles = [];
-            let spawnTimer = 0;
-            let score = 0;
-            let gameOver = false;
-
-            function spawnObstacle() {
-            const height = Math.random() * 40 + 20; // 20px to 60px
-                obstacles.push({
-                    x: canvas.width,
-                    y: GROUND_Y - height,
-                    width: 25,
-                    height: height,
-                    speed: 6
-    });
-}
-
-            update() {
-                this.velocityY += GRAVITY;
-                this.y += this.velocityY;
-
-                if (this.y + this.height >= GROUND_Y) {
-                    this.y = GROUND_Y - this.height;
-                    this.velocityY = 0;
-                    this.isJumping = false;
-                }
-            },
-
-            jump() {
-                if (!this.isJumping) {
-                    this.velocityY = this.jumpForce;
-                    this.isJumping = true;
-                }
+            } else {
+                ctx.fillStyle = "#00ff00";
+                ctx.fillRect(this.x, this.y, this.width, this.height);
             }
-        };
-        
-// Handle Inputs
-window.addEventListener("keydown", (e) => {
-    if (e.code === "Space" || e.code === "ArrowUp" || e.code === "KeyW") {
-        if (gameOver) {
-            resetGame();
-        } else {
-            player.jump();
+        },
+
+        update() {
+            this.velocityY += GRAVITY;
+            this.y += this.velocityY;
+
+            if (this.y + this.height >= GROUND_Y) {
+                this.y = GROUND_Y - this.height;
+                this.velocityY = 0;
+                this.isJumping = false;
+            }
+        },
+
+        jump() {
+            if (!this.isJumping) {
+                this.velocityY = this.jumpForce;
+                this.isJumping = true;
+            }
         }
+    };
+
+    function spawnObstacle() {
+        const height = Math.random() * 40 + 20; // 20px to 60px
+        obstacles.push({
+            x: canvas.width,
+            y: GROUND_Y - height,
+            width: 25,
+            height: height,
+            speed: 6
+        });
     }
-});
-        // Keyboard Controls
-        window.addEventListener("keydown", (e) => {
-            if (e.code === "Space" || e.code === "ArrowUp") {
-                // Prevents Spacebar from scrolling down the web page
-                e.preventDefault();
+
+    function checkCollision(rect1, rect2) {
+        return (
+            rect1.x < rect2.x + rect2.width &&
+            rect1.x + rect1.width > rect2.x &&
+            rect1.y < rect2.y + rect2.height &&
+            rect1.y + rect1.height > rect2.y
+        );
+    }
+
+    function resetGame() {
+        score = 0;
+        spawnTimer = 0;
+        obstacles.length = 0;
+        gameOver = false;
+        player.y = GROUND_Y - player.height;
+        player.velocityY = 0;
+        player.isJumping = false;
+        gameLoop();
+    }
+
+    // Consolidated Event Listener
+    window.addEventListener("keydown", (e) => {
+        if (e.code === "Space" || e.code === "ArrowUp" || e.code === "KeyW") {
+            e.preventDefault(); // Prevents page scrolling
+            if (gameOver) {
+                resetGame();
+            } else {
                 player.jump();
             }
-        });
+        }
+    });
 
-        function gameLoop() {
-            // Clear Screen
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Draw Ground Line
-            ctx.strokeStyle = "#fff";
-            ctx.beginPath();
-            ctx.moveTo(0, GROUND_Y);
-            ctx.lineTo(canvas.width, GROUND_Y);
-            ctx.stroke();
-
-            // Update & Draw Player
-            player.update();
-            player.draw();
-
-            // Render HUD / Score
+    function gameLoop() {
+        if (gameOver) {
+            // Draw Game Over Screen
+            ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
             ctx.fillStyle = "#fff";
-            ctx.font = "20px sans-serif";
-            ctx.fillText(`Score: ${score}`, 20, 40);
-
-            requestAnimationFrame(gameLoop);
+            ctx.font = "30px sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2 - 10);
+            ctx.font = "18px sans-serif";
+            ctx.fillText("Press Space or Up Arrow to Restart", canvas.width / 2, canvas.height / 2 + 30);
+            return;
         }
 
-        // Start Loop
-        gameLoop();
-    </script>
+        // Clear Screen
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw Ground Line
+        ctx.strokeStyle = "#fff";
+        ctx.beginPath();
+        ctx.moveTo(0, GROUND_Y);
+        ctx.lineTo(canvas.width, GROUND_Y);
+        ctx.stroke();
+
+        // Update & Draw Player
+        player.update();
+        player.draw();
+
+        // Handle Obstacles Spawning & Movement
+        spawnTimer++;
+        if (spawnTimer % 90 === 0) { // Spawns roughly every 1.5 seconds
+            spawnObstacle();
+        }
+
+        for (let i = obstacles.length - 1; i >= 0; i--) {
+            let obs = obstacles[i];
+            obs.x -= obs.speed;
+
+            // Draw Obstacle
+            if (obstacleImg.complete && obstacleImg.naturalWidth !== 0) {
+                ctx.drawImage(obstacleImg, obs.x, obs.y, obs.width, obs.height);
+            } else {
+                ctx.fillStyle = "#ff0000";
+                ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+            }
+
+            // Check Collision
+            if (checkCollision(player, obs)) {
+                gameOver = true;
+            }
+
+            // Remove off-screen obstacles & increment score
+            if (obs.x + obs.width < 0) {
+                obstacles.splice(i, 1);
+                score += 10;
+            }
+        }
+
+        // Render HUD / Score
+        ctx.fillStyle = "#fff";
+        ctx.font = "20px sans-serif";
+        ctx.textAlign = "left";
+        ctx.fillText(`Score: ${score}`, 20, 40);
+
+        requestAnimationFrame(gameLoop);
+    }
+
+    // Start Game
+    gameLoop();
+</script>
 </body>
 </html>
 
