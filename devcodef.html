@@ -52,7 +52,6 @@
             height: auto;
         }
 
-        /* Canvas Container Adjustments for Page Scroll */
         .canvas-container {
             margin: 20px 0;
             background: transparent;
@@ -72,14 +71,12 @@
 </head>
 <body>
 
-    <!-- PRE LOADER -->
     <section class="preloader">
         <div class="spinner">
             <span class="spinner-rotate"></span>
         </div>
     </section>
 
-    <!-- MENU -->
     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -105,12 +102,10 @@
         </div>
     </section>
 
-    <!-- HOME PARALLAX -->
     <section>
         <div class="parallax"></div>
     </section>
 
-    <!-- GAME SECTION -->
     <div>
         <section id="home" data-stellar-background-ratio="0.5">
             <div class="container">
@@ -125,11 +120,11 @@
         </section>
     </div>
     <div id="reaction-game-container" class="game-card">
-  <h3>⚡ Target Smash</h3>
+  <h3>Target Smash</h3>
   <p>Click as many targets as you can before time runs out!</p>
   <div class="game-stats">
     <span>Score: <b id="reaction-score">0</b></span>
-    <span>Time: <b id="reaction-timer">15</b>s</span>
+    <span>Time: <b id="reaction-timer">30</b>s</span>
   </div>
   <div id="target-box">
     <button id="start-reaction-btn" onclick="startReactionGame()">Start Game</button>
@@ -138,7 +133,6 @@
 </div>
     <br><br><br>
 
-    <!-- FOOTER -->
     <footer id="contact" data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="row">
@@ -209,7 +203,6 @@
     background: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
   }
 </style>
 
@@ -260,7 +253,6 @@
     moveTarget();
   }
 </script>
-    <!-- SCRIPTS -->
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.stellar.min.js"></script>
@@ -269,13 +261,9 @@
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/smoothscroll.js"></script>
     <script src="js/custom.js"></script>
-
-    <!-- GAME ENGINE SCRIPT -->
    <script>
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
-
-    // Optional: Set canvas dimensions dynamically if not set in HTML
     canvas.width = canvas.width || 800;
     canvas.height = canvas.height || 400;
 
@@ -302,7 +290,6 @@
         jumpForce: -12,
 
         draw() {
-            // Draws image if loaded, falls back to a colored rectangle if image is missing
             if (playerImg.complete && playerImg.naturalWidth !== 0) {
                 ctx.drawImage(playerImg, this.x, this.y, this.width, this.height);
             } else {
@@ -331,7 +318,7 @@
     };
 
     function spawnObstacle() {
-        const height = Math.random() * 40 + 20; // 20px to 60px
+        const height = Math.random() * 40 + 20; 
         obstacles.push({
             x: canvas.width,
             y: GROUND_Y - height,
@@ -361,10 +348,9 @@
         gameLoop();
     }
 
-    // Consolidated Event Listener
     window.addEventListener("keydown", (e) => {
         if (e.code === "Space" || e.code === "ArrowUp" || e.code === "KeyW") {
-            e.preventDefault(); // Prevents page scrolling
+            e.preventDefault(); 
             if (gameOver) {
                 resetGame();
             } else {
@@ -375,7 +361,6 @@
 
     function gameLoop() {
         if (gameOver) {
-            // Draw Game Over Screen
             ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
@@ -388,23 +373,19 @@
             return;
         }
 
-        // Clear Screen
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Draw Ground Line
         ctx.strokeStyle = "#fff";
         ctx.beginPath();
         ctx.moveTo(0, GROUND_Y);
         ctx.lineTo(canvas.width, GROUND_Y);
         ctx.stroke();
 
-        // Update & Draw Player
         player.update();
         player.draw();
 
-        // Handle Obstacles Spawning & Movement
         spawnTimer++;
-        if (spawnTimer % 90 === 0) { // Spawns roughly every 1.5 seconds
+        if (spawnTimer % 90 === 0) { 
             spawnObstacle();
         }
 
@@ -412,7 +393,6 @@
             let obs = obstacles[i];
             obs.x -= obs.speed;
 
-            // Draw Obstacle
             if (obstacleImg.complete && obstacleImg.naturalWidth !== 0) {
                 ctx.drawImage(obstacleImg, obs.x, obs.y, obs.width, obs.height);
             } else {
@@ -420,19 +400,15 @@
                 ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
             }
 
-            // Check Collision
             if (checkCollision(player, obs)) {
                 gameOver = true;
             }
-
-            // Remove off-screen obstacles & increment score
             if (obs.x + obs.width < 0) {
                 obstacles.splice(i, 1);
-                score += 10;
+                score += 1;
             }
         }
 
-        // Render HUD / Score
         ctx.fillStyle = "#fff";
         ctx.font = "20px sans-serif";
         ctx.textAlign = "left";
@@ -441,7 +417,6 @@
         requestAnimationFrame(gameLoop);
     }
 
-    // Start Game
     gameLoop();
 </script>
 </body>
