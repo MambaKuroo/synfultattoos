@@ -126,6 +126,72 @@ Equipped with a diverse digital toolkit, Sydney regularly works with industry-st
                </div>
           </div>
      </section>
+	<style>
+		/* Gallery Section Styles */
+.gallery-section {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+  font-family: sans-serif;
+}
+
+.gallery-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+/* Responsive Grid using CSS auto-fit */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Individual Gallery Cards */
+.gallery-item {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+/* Image behavior inside container */
+.gallery-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover; /* Prevents image distortion */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* Text Captions */
+.gallery-caption {
+  padding: 15px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #444;
+}
+
+/* Interactive Hover Effects */
+.gallery-item:hover {
+  transform: translateY(-5px); /* Smooth lift effect */
+}
+
+.gallery-item:hover .gallery-img {
+  transform: scale(1.05); /* Slight zoom on image */
+}
+
+	</style>
 	<section class="gallery-section">
   <div class="gallery-container">
     
